@@ -128,7 +128,7 @@ minetest.after(0, function()
 					--end
 					if not skip then
 						recipe.cost = max_cost
-						recipe.qty  = recipe.output:match("%d+$") or 1
+						recipe.qty  = recipe.output:match(" (%d+)$") or 1
 						table.insert(all_recipes[name], recipe)
 					end
 				end
