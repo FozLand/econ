@@ -197,20 +197,9 @@ minetest.after(0, function()
 		end
 	until convergence == true
 
+	minetest.log("action", "Finished calculating item costs.")
 
-local short_list = {
-	'default:leaves',
-	'default:cobble',
-	'default:gravel',
-	'default:sand',
-	'default:clay',
-	'default:clay_lump',
-	'default:dirt',
-}
-	for _, name in ipairs(short_list) do
-		print( name, cost_of(name) )
-	end
-
+	--[[
 	local path = minetest:get_worldpath()
 	local data = print_table(all_recipes)
 	local file = io.open(path.."/all_recipes.lua", "w")
@@ -220,5 +209,7 @@ local short_list = {
 	else
 		minetest.log("error", "Can't save file")
 	end
+	--]]
+
 end)
 
