@@ -50,8 +50,17 @@ for source, target in pairs(minetest.registered_aliases) do
 end
 
 local all_recipes = {}
+
 local function cost_of(name)
-	return all_recipes[name] and all_recipes[name].min_cost
+	return (all_recipes[name] and all_recipes[name].min_cost) or max_cost
+end
+
+function econ.price_of(itemstring)
+	local stack_max   = ItemStack(itemstring):get_stack_max()
+	local unit_price  = cost_of(itemstring)*(1 + margin)
+	local stack_price = unit_price*stack_max
+	local s =(" cost %d mineninth per stack of %d (%.2f each).")
+	return s:format(stack_price, stack_max, unit_price)
 end
 
 minetest.register_chatcommand('price', {
